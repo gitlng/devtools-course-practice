@@ -101,6 +101,7 @@ TEST(Tkachev_Alexey_ComplexNumberTest, multiplying) {
     ASSERT_EQ(complex_number_1 * complex_number_2,
         complex_numbers_true_mul);
 }
+
 TEST(Tkachev_Alexey_ComplexNumberTest, division_by_real_one) {
     const double real_1 = 1.1;
     const double imaginary_1 = -1.1;
