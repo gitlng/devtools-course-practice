@@ -35,11 +35,11 @@ TEST(Tkachev_Alexey_ComplexNumberTest, summing) {
     const double real_true_solution = -50.4;
     const double imaginary_true_solution = 31.4;
 
-    const ComplexNumber complex_numberstrue_sum(
+    const ComplexNumber complex_numbers_true_sum(
            real_true_solution, imaginary_true_solution);
 
     ASSERT_EQ(complex_number_1 + complex_number_2,
-        complex_numberstrue_sum);
+        complex_numbers_true_sum);
 }
 
 TEST(Tkachev_Alexey_ComplexNumberTest, subtraction) {
@@ -55,11 +55,11 @@ TEST(Tkachev_Alexey_ComplexNumberTest, subtraction) {
     const double real_true_solution = 160.5;
     const double imaginary_true_solution = 25.4;
 
-    const ComplexNumber complex_numberstrue_sub(
+    const ComplexNumber complex_numbers_true_sub(
          real_true_solution, imaginary_true_solution);
 
     ASSERT_EQ(complex_number_1 - complex_number_2,
-        complex_numberstrue_sub);
+        complex_numbers_true_sub);
 }
 
 TEST(Tkachev_Alexey_ComplexNumberTest, division) {
@@ -75,11 +75,11 @@ TEST(Tkachev_Alexey_ComplexNumberTest, division) {
     const double real_true_solution = 0.3836635041757291;
     const double imaginary_true_solution = 0.2604894409503065;
 
-    const ComplexNumber complex_numberstrue_div(
+    const ComplexNumber complex_numbers_true_div(
          real_true_solution, imaginary_true_solution);
 
     ASSERT_EQ(complex_number_1 / complex_number_2,
-        complex_numberstrue_div);
+        complex_numbers_true_div);
 }
 
 TEST(Tkachev_Alexey_ComplexNumberTest, multiplying) {
@@ -95,11 +95,11 @@ TEST(Tkachev_Alexey_ComplexNumberTest, multiplying) {
     const double real_true_solution = -354.68550000000005;
     const double imaginary_true_solution = -102.11102500000001;
 
-    const ComplexNumber complex_numberstrue_mul(
+    const ComplexNumber complex_numbers_true_mul(
          real_true_solution, imaginary_true_solution);
 
     ASSERT_EQ(complex_number_1 * complex_number_2,
-        complex_numberstrue_mul);
+        complex_numbers_true_mul);
 }
 TEST(Tkachev_Alexey_ComplexNumberTest, division_by_real_one) {
     const double real_1 = 1.1;
