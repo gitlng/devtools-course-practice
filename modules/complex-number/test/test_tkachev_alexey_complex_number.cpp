@@ -4,115 +4,113 @@
 
 #include "include/complex_number.h"
 
-TEST(Tkachev_Alexey_ComplexNumberTest, distributive_law) {
-    const double real_1 = 10.2;
-    const double imaginary_1 = -30.5;
-
-    const double real_2 = 40.5;
-    const double imaginary_2 = 1.2;
-
-    const double real_3 = -0.5;
-    const double imaginary_3 = 21.5;
-
-    const ComplexNumber complex_number_1(real_1, imaginary_1);
-    const ComplexNumber complex_number_2(real_2, imaginary_2);
-    const ComplexNumber complex_number_3(real_3, imaginary_3);
-
-    const ComplexNumber first_expression =
-        complex_number_1 * (complex_number_2 + complex_number_3);
-
-    const ComplexNumber second_expression =
-        complex_number_1 * complex_number_2 +
-        complex_number_1 * complex_number_3;
-
-    ASSERT_EQ(first_expression, second_expression);
+TEST(Tkachev_Alexey_ComplexNumberTest, full_of_zeros_no_throw) {
+	const double real = 0.0;
+	const double imaginary = 0.0;
+	ASSERT_NO_THROW(ComplexNumber(real, imaginary));
 }
 
-TEST(Tkachev_Alexey_ComplexNumberTest, sum_with_im_zero) {
-    const double real_1 = 5.0;
-    const double imaginary_1 = 0.0;
-
-    const double real_2 = 2.0;
-    const double imaginary_2 = 0.0;
-
-    const ComplexNumber complex_number_1(real_1, imaginary_1);
-    const ComplexNumber complex_number_2(real_2, imaginary_2);
-
-    const double true_real =
-        complex_number_1.getRe() + complex_number_2.getRe();
-
-    const double true_imaginary = 0.0;
-
-    const ComplexNumber sum_complex_number =
-        complex_number_1 + complex_number_2;
-
-    const ComplexNumber true_sum_complex_number(
-        true_real, true_imaginary);
-
-    ASSERT_EQ(true_sum_complex_number, sum_complex_number);
+TEST(Tkachev_Alexey_ComplexNumberTest, imaginary_only_no_throw) {
+	const double real = 0.0;
+	const double imaginary = 1.0;
+	ASSERT_NO_THROW(ComplexNumber(real, imaginary));
 }
 
-TEST(Tkachev_Alexey_ComplexNumberTest, multiplication_with_im_zero) {
-    const double real_1 = 25.0;
-    const double imaginary_1 = 0.0;
-
-    const double real_2 = 30.1;
-    const double imaginary_2 = 0.0;
-
-    const ComplexNumber complex_number_1(real_1, imaginary_1);
-    const ComplexNumber complex_number_2(real_2, imaginary_2);
-
-    const double true_real =
-        complex_number_1.getRe() * complex_number_2.getRe();
-
-    const double true_imaginary = 0.0;
-
-    const ComplexNumber mult_complex_number =
-        complex_number_1 * complex_number_2;
-
-    const ComplexNumber true_mult_complex_number(
-        true_real, true_imaginary);
-
-    ASSERT_EQ(true_mult_complex_number, mult_complex_number);
+TEST(Tkachev_Alexey_ComplexNumberTest, real_only_no_throw) {
+	const double real = 1.0;
+	const double imaginary = 0.0;
+	ASSERT_NO_THROW(ComplexNumber(real, imaginary));
 }
 
-TEST(Tkachev_Alexey_ComplexNumberTest, division_zero_by_not_a_zero) {
-    const double real_1 = 0.0;
-    const double imaginary_1 = 0.0;
+TEST(Tkachev_Alexey_ComplexNumberTest, summing) {
+	const double real_1 = -30.0;
+	const double imaginary_1 = 10.5;
 
-    const double real_2 = 30.1;
-    const double imaginary_2 = 50.1;
+	const double real_2 = -20.4;
+	const double imaginary_2 = 20.9;
 
-    const ComplexNumber complex_number_1(real_1, imaginary_1);
-    const ComplexNumber complex_number_2(real_2, imaginary_2);
+	const ComplexNumber complex_number_1(real_1, imaginary_1);
+	const ComplexNumber complex_number_2(real_2, imaginary_2);
 
-    const ComplexNumber div_complex_number =
-        complex_number_1 / complex_number_2;
+	const double real_true_solution = -50.4;
+	const double imaginary_true_solution = 31.4;
 
-    const double true_real = 0.0;
-    const double true_imaginary = 0.0;
+	const ComplexNumber complexNumbersTrueSum(
+		real_true_solution, imaginary_true_solution);
 
-    const ComplexNumber true_div_complex_number(
-        true_real, true_imaginary);
-
-    ASSERT_EQ(true_div_complex_number, div_complex_number);
+	ASSERT_EQ(complex_number_1 + complex_number_2,
+		complexNumbersTrueSum);
 }
 
+TEST(Tkachev_Alexey_ComplexNumberTest, subtraction) {
+	const double real_1 = 10.0;
+	const double imaginary_1 = 25.4;
+
+	const double real_2 = -150.5;
+	const double imaginary_2 = 0.0;
+
+	const ComplexNumber complex_number_1(real_1, imaginary_1);
+	const ComplexNumber complex_number_2(real_2, imaginary_2);
+
+	const double real_true_solution = 160.5;
+	const double imaginary_true_solution = 25.4;
+
+	const ComplexNumber complexNumbersTrueSub(
+		real_true_solution, imaginary_true_solution);
+
+	ASSERT_EQ(complex_number_1 - complex_number_2,
+		complexNumbersTrueSub);
+}
+
+TEST(Tkachev_Alexey_ComplexNumberTest, division) {
+	const double real_1 = 25.25;
+	const double imaginary_1 = 45.45;
+
+	const double real_2 = 100.1;
+	const double imaginary_2 = 50.5;
+
+	const ComplexNumber complex_number_1(real_1, imaginary_1);
+	const ComplexNumber complex_number_2(real_2, imaginary_2);
+
+	const double real_true_solution = 0.3836635041757291;
+	const double imaginary_true_solution = 0.2604894409503065;
+
+	const ComplexNumber complexNumbersTrueSub(
+		real_true_solution, imaginary_true_solution);
+
+	ASSERT_EQ(complex_number_1 / complex_number_2,
+		complexNumbersTrueSub);
+}
+
+TEST(Tkachev_Alexey_ComplexNumberTest, multiplying) {
+	const double real_1 = 0.0;
+	const double imaginary_1 = 10.105;
+
+	const double real_2 = -10.105;
+	const double imaginary_2 = 35.1;
+
+	const ComplexNumber complex_number_1(real_1, imaginary_1);
+	const ComplexNumber complex_number_2(real_2, imaginary_2);
+
+	const double real_true_solution = -354.68550000000005;
+	const double imaginary_true_solution = -102.11102500000001;
+
+	const ComplexNumber complexNumbersTrueSub(
+		real_true_solution, imaginary_true_solution);
+
+	ASSERT_EQ(complex_number_1 * complex_number_2,
+		complexNumbersTrueSub);
+}
 TEST(Tkachev_Alexey_ComplexNumberTest, division_by_real_one) {
-    const double real_1 = 1.1;
-    const double imaginary_1 = -1.1;
+	const double real_1 = 1.1;
+	const double imaginary_1 = -1.1;
 
-    const double real_2 = 1.0;
-    const double imaginary_2 = 0.0;
+	const double real_2 = 1.0;
+	const double imaginary_2 = 0.0;
 
-    const ComplexNumber complex_number_1(real_1, imaginary_1);
-    const ComplexNumber complex_number_2(real_2, imaginary_2);
+	const ComplexNumber complex_number_1(real_1, imaginary_1);
+	const ComplexNumber complex_number_2(real_2, imaginary_2);
 
-    const ComplexNumber div_complex_number =
-        complex_number_1 / complex_number_2;
-
-    const ComplexNumber true_div_complex_number =
-        complex_number_1;
-
-    ASSERT_EQ(true_div_complex_number, div_complex_number);
+	ASSERT_EQ(complex_number_1 / complex_number_2,
+		complex_number_1);
 }
