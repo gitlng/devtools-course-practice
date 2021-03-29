@@ -4,12 +4,6 @@
 
 #include "include/complex_number.h"
 
-TEST(Tkachev_Alexey_ComplexNumberTest, full_of_zeros_no_throw) {
-    const double real = 0.0;
-    const double imaginary = 0.0;
-    ASSERT_NO_THROW(ComplexNumber(real, imaginary));
-}
-
 TEST(Tkachev_Alexey_ComplexNumberTest, distributive_law) {
     const double real_1 = 10.2;
     const double imaginary_1 = -30.5;
@@ -49,9 +43,13 @@ TEST(Tkachev_Alexey_ComplexNumberTest, sum_with_im_zero) {
 
     const double true_imaginary = 0.0;
 
-    const ComplexNumber true_complex_number(true_real, true_imaginary);
+    const ComplexNumber sum_complex_number =
+        complex_number_1 + complex_number_2;
 
-    ASSERT_EQ(complex_number_1 + complex_number_2, true_complex_number);
+    const ComplexNumber true_sum_complex_number(
+        true_real, true_imaginary);
+
+    ASSERT_EQ(sum_complex_number, true_sum_complex_number);
 }
 
 TEST(Tkachev_Alexey_ComplexNumberTest, multiplication_with_im_zero) {
@@ -69,9 +67,13 @@ TEST(Tkachev_Alexey_ComplexNumberTest, multiplication_with_im_zero) {
 
     const double true_imaginary = 0.0;
 
-    const ComplexNumber true_complex_number(true_real, true_imaginary);
+    const ComplexNumber mult_complex_number =
+        complex_number_1 * complex_number_2;
 
-    ASSERT_EQ(complex_number_1 * complex_number_2, true_complex_number);
+    const ComplexNumber true_mult_complex_number(
+        true_real, true_imaginary);
+
+    ASSERT_EQ(true_mult_complex_number, mult_complex_number);
 }
 
 TEST(Tkachev_Alexey_ComplexNumberTest, division_zero_by_not_a_zero) {
@@ -84,12 +86,16 @@ TEST(Tkachev_Alexey_ComplexNumberTest, division_zero_by_not_a_zero) {
     const ComplexNumber complex_number_1(real_1, imaginary_1);
     const ComplexNumber complex_number_2(real_2, imaginary_2);
 
+    const ComplexNumber div_complex_number =
+        complex_number_1 / complex_number_2;
+
     const double true_real = 0.0;
     const double true_imaginary = 0.0;
 
-    const ComplexNumber true_complex_number(true_real, true_imaginary);
+    const ComplexNumber true_div_complex_number(
+        true_real, true_imaginary);
 
-    ASSERT_EQ(complex_number_1 / complex_number_2, true_complex_number);
+    ASSERT_EQ(div_complex_number, true_div_complex_number);
 }
 
 TEST(Tkachev_Alexey_ComplexNumberTest, division_by_real_one) {
@@ -102,6 +108,11 @@ TEST(Tkachev_Alexey_ComplexNumberTest, division_by_real_one) {
     const ComplexNumber complex_number_1(real_1, imaginary_1);
     const ComplexNumber complex_number_2(real_2, imaginary_2);
 
-    ASSERT_EQ(complex_number_1 / complex_number_2,
-         complex_number_1);
+    const ComplexNumber div_complex_number =
+        complex_number_1 / complex_number_2;
+
+    const ComplexNumber true_div_complex_number =
+        complex_number_1;
+
+    ASSERT_EQ(div_complex_number, true_div_complex_number);
 }
