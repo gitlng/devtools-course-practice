@@ -49,7 +49,7 @@ TEST(Tkachev_Alexey_ComplexNumberTest, sum_with_im_zero) {
     const ComplexNumber true_sum_complex_number(
         true_real, true_imaginary);
 
-    ASSERT_EQ(sum_complex_number, true_sum_complex_number);
+    ASSERT_EQ(true_sum_complex_number, sum_complex_number);
 }
 
 TEST(Tkachev_Alexey_ComplexNumberTest, multiplication_with_im_zero) {
@@ -95,7 +95,7 @@ TEST(Tkachev_Alexey_ComplexNumberTest, division_zero_by_not_a_zero) {
     const ComplexNumber true_div_complex_number(
         true_real, true_imaginary);
 
-    ASSERT_EQ(div_complex_number, true_div_complex_number);
+    ASSERT_EQ(true_div_complex_number, div_complex_number);
 }
 
 TEST(Tkachev_Alexey_ComplexNumberTest, division_by_real_one) {
@@ -114,5 +114,5 @@ TEST(Tkachev_Alexey_ComplexNumberTest, division_by_real_one) {
     const ComplexNumber true_div_complex_number =
         complex_number_1;
 
-    ASSERT_EQ(div_complex_number, true_div_complex_number);
+    ASSERT_EQ(true_div_complex_number, div_complex_number);
 }
