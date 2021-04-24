@@ -30,6 +30,18 @@ TEST(queue_test, node_get_data) {
     ASSERT_EQ(node->data, 5.0);
 }
 
+TEST(queue_test, node_get_data_full_init) {
+    Node node = {0.0, nullptr};
+
+    ASSERT_EQ(node.data, 0.0);
+}
+
+TEST(queue_test, node_get_data_ref_full_init) {
+    Node* node = new Node({0.0, nullptr});
+
+    ASSERT_EQ(node->data, 0.0);
+}
+
 TEST(queue_test, node_get_next) {
     Node* node = new Node();
 
@@ -67,7 +79,7 @@ TEST(queue_test, throw_remove_first) {
 TEST(queue_test, queue_equals_itself) {
     Queue *testing_queue = new Queue();
 
-    ASSERT_NO_THROW(testing_queue = testing_queue;);
+    ASSERT_NO_THROW(*testing_queue = *testing_queue;);
 }
 
 TEST(queue_test, empty_queues_equal) {
