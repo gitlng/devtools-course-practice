@@ -15,14 +15,15 @@ TEST(queue_test, copy_nodes) {
 
 TEST(queue_test, node_get_data) {
     Node* node = new Node();
+    node->data = 5.0;
 
-    ASSERT_NO_THROW(node->data);
+    ASSERT_EQ(node->data, 5.0);
 }
 
 TEST(queue_test, node_get_next) {
     Node* node = new Node();
 
-    ASSERT_NO_THROW(node->next);
+    ASSERT_EQ(node->next, nullptr);
 }
 
 TEST(queue_test, no_exception_during_crearing) {
