@@ -3,17 +3,17 @@
 #include <gtest/gtest.h>
 #include "include/queue.h"
 
-TEST(queue_test, empty_node) {
+TEST(queue_test, empty_node_creation) {
     ASSERT_NO_THROW(new Node());
 }
 
-TEST(queue_test, copy_nodes) {
+TEST(queue_test, node_copy) {
     Node* node = new Node();
 
     ASSERT_NO_THROW(new Node(*node));
 }
 
-TEST(queue_test, not_init_node) {
+TEST(queue_test, without_new_init_node) {
     ASSERT_NO_THROW(Node node);
 }
 
@@ -96,6 +96,18 @@ TEST(queue_test, not_empty_equals_empty) {
     ASSERT_EQ(testing_queue_1->isTheSameData(testing_queue_2), false);
 }
 
+TEST(queue_test, empty_equals_not_empty) {
+    Queue *testing_queue_1 = new Queue();
+    Queue *testing_queue_2 = new Queue();
+
+    testing_queue_2->append(5.2);
+    testing_queue_2->append(3.2);
+
+    *testing_queue_1 = *testing_queue_2;
+
+    ASSERT_EQ(testing_queue_1->isTheSameData(testing_queue_2), true);
+}
+
 TEST(queue_test, is_empty_true) {
     Queue * testing_queue = new Queue();
 
@@ -124,9 +136,9 @@ TEST(queue_test, copy_constructor_equal) {
         testing_queue_1->append(static_cast<double>(i));
     }
 
-    Queue* testing_queue_2(testing_queue_1);
+    Queue* testing_queue_2 = new Queue(*testing_queue_1);
 
-    ASSERT_EQ(testing_queue_1 == testing_queue_2, true);
+    ASSERT_EQ(testing_queue_1->isTheSameData(testing_queue_2), true);
 }
 
 TEST(queue_test, operator_equals) {
@@ -139,14 +151,13 @@ TEST(queue_test, operator_equals) {
     Queue* testing_queue_2 = new Queue();
 
     for (size_t i = 10; i < 20; i++) {
-        testing_queue_1->append(static_cast<double>(i));
+        testing_queue_2->append(static_cast<double>(i));
     }
 
-    testing_queue_1 = testing_queue_2;
+    *testing_queue_1 = *testing_queue_2;
 
-    ASSERT_EQ(testing_queue_1 == testing_queue_2, true);
+    ASSERT_EQ(testing_queue_1->isTheSameData(testing_queue_2), true);
 }
-
 
 TEST(queue_test, comparing_two_queues_equal) {
     Queue* testing_queue_1 = new Queue();
