@@ -13,6 +13,12 @@ TEST(queue_test, node_copy) {
     ASSERT_NO_THROW(new Node(*node));
 }
 
+TEST(queue_test, node_delete) {
+    Node* node = new Node();
+
+    ASSERT_NO_THROW(delete node);
+}
+
 TEST(queue_test, without_new_init_node) {
     ASSERT_NO_THROW(Node node);
 }
