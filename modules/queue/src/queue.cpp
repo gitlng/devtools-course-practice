@@ -58,11 +58,15 @@ bool Queue::isTheSameData(const Queue* other) const {
 }
 
 Queue& Queue::operator=(const Queue& other) {
+    if (other.isEmpty()) {
+        this->first = nullptr;
+        return *this;
+    }
     if (this == &other) {
         return *this;
     } else {
-        if (!this->isEmpty() || other.isEmpty()) {
-            this->~Queue();
+        if (!this->isEmpty()) {
+            this->first = nullptr;
         }
 
         this->first = new Node(*(other.first));
@@ -93,6 +97,9 @@ unsigned int Queue::getSize() const {
 }
 
 std::string Queue::toStringData() const {
+    if (this->isEmpty()) {
+        return " ";
+    }
     Node current = *this->first;
     std::string string_queue = std::to_string(current.data) + " ";
     while (current.next != nullptr) {
