@@ -27,9 +27,8 @@ TEST(queue_test, throw_get_first) {
 
 TEST(queue_test, no_throw_empty_queues) {
     Queue *testing_queue_1 = new Queue();
-    Queue *testing_queue_2 = new Queue();
 
-    ASSERT_NO_THROW(testing_queue_1 = testing_queue_2);
+    ASSERT_NO_THROW(testing_queue_1 = new Queue());
 }
 
 TEST(queue_test, is_empty_true) {
