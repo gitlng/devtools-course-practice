@@ -6,12 +6,10 @@
 #include <cstdio>
 #include <string>
 
+#include "include/node.h"
+
 class Queue {
  public:
-    struct Node {
-        double data = 0.0;
-        Node* next = nullptr;
-    };
     Queue();
     ~Queue();
     bool isEmpty() const;

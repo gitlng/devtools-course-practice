@@ -4,6 +4,7 @@
 #include <iostream>
 
 #include "include/queue.h"
+#include "include/node.h"
 
 
 Queue::Queue() {
@@ -19,17 +20,17 @@ bool Queue::isEmpty() const {
 }
 
 double Queue::getLastData() const {
-    return this->last->data;
+    return this->last->getData();
 }
 
 void Queue::append(double data) {
     Node* new_node = new Node();
-    new_node->data = data;
+    new_node->setDada(data);
 
     if (this->isEmpty()) {
         this->first = this->last = new_node;
     } else {
-        this->last->next = new_node;
+        this->last->setNext(new_node);
         this->last = new_node;
     }
 }
@@ -38,7 +39,7 @@ double Queue::getFirstData() const {
     if (this->isEmpty()) {
         throw std::exception();
     }
-    return this->first->data;
+    return this->first->getData();
 }
 
 void Queue::removeFirst() {
@@ -47,7 +48,7 @@ void Queue::removeFirst() {
     }
 
     Node* new_first = this->first;
-    this->first = first->next;
+    this->first = this->first->getNext();
 
     delete(new_first);
 }
@@ -73,14 +74,14 @@ Queue& Queue::operator=(const Queue& other) {
 
     this->first = new Node(*(other.first));
 
-    Node* other_first_next = other.first->next;
+    Node* other_first_next = other.first->getNext();
 
     Node* this_first = this->first;
 
     while (other_first_next != nullptr) {
-        this_first->next = new Node(*other_first_next);
+        this_first->setNext(new Node(*other_first_next));
         this_first = new Node(*other_first_next);
-        other_first_next = other_first_next->next;
+        other_first_next = other_first_next->getNext();
     }
 
     this->last = new Node(*other.last);
@@ -92,8 +93,8 @@ unsigned int Queue::getSize() const {
     unsigned int size = 1;
     Node current = *this->first;
 
-    for (; current.next != nullptr; size++,
-        current.next = current.next->next) {}
+    for (; current.getNext() != nullptr; size++,
+        current.setNext(current.getNext()->getNext())) {}
 
     return size;
 }
@@ -103,10 +104,10 @@ std::string Queue::toStringData() const {
         return " ";
     }
     Node current = *this->first;
-    std::string string_queue = std::to_string(current.data) + " ";
-    while (current.next != nullptr) {
-        string_queue += std::to_string(current.next->data) + " ";
-        current.next = current.next->next;
+    std::string string_queue = std::to_string(current.getData()) + " ";
+    while (current.getNext() != nullptr) {
+        string_queue += std::to_string(current.getNext()->getData()) + " ";
+        current.setNext(current.getNext()->getNext());
     }
     return string_queue;
 }
