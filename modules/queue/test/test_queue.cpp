@@ -5,6 +5,29 @@
 
 #include "include/queue.h"
 
+TEST(queue_test, empty_node) {
+    ASSERT_NO_THROW(new Node());
+}
+
+TEST(queue_test, copy_nodes) {
+    Node* node = new Node();
+
+    ASSERT_NO_THROW(new Node(*node));
+}
+
+TEST(queue_test, node_get_data) {
+    Node* node = new Node();
+    node->data = 5.0;
+
+    ASSERT_EQ(node->data, 5.0);
+}
+
+TEST(queue_test, node_get_next) {
+    Node* node = new Node();
+
+    ASSERT_EQ(node->next, nullptr);
+}
+
 TEST(queue_test, no_exception_during_crearing) {
     ASSERT_NO_THROW(new Queue());
 }
@@ -33,9 +56,21 @@ TEST(queue_test, queue_equals_itself) {
     ASSERT_NO_THROW(*testing_queue = *testing_queue);
 }
 
+TEST(queue_test, throw_remove_first) {
+    Queue *testing_queue = new Queue();
+
+    ASSERT_ANY_THROW(testing_queue->removeFirst());
+}
+
+TEST(queue_test, queue_equals_itself) {
+    Queue *testing_queue = new Queue();
+
+    ASSERT_NO_THROW(testing_queue = testing_queue;);
+}
+
+
 TEST(queue_test, empty_queues_equal) {
     Queue *testing_queue_1 = new Queue();
-    Queue *testing_queue_2 = new Queue();
 
     *testing_queue_1 = *testing_queue_2;
 
@@ -59,6 +94,21 @@ TEST(queue_test, not_empty_equals_empty) {
 
     ASSERT_EQ(false, str_data_queue_1 == str_data_queue_2);
 }
+
+
+TEST(queue_test, not_empty_equals_empty) {
+    Queue *testing_queue_1 = new Queue();
+
+    testing_queue_1->append(5.2);
+    testing_queue_1->append(3.2);
+
+    Queue *testing_queue_2 = new Queue();
+
+    testing_queue_1 = testing_queue_2;
+
+    ASSERT_EQ(testing_queue_1 == testing_queue_2, true);
+}
+
 
 TEST(queue_test, is_empty_true) {
     Queue * testing_queue = new Queue();
@@ -197,6 +247,19 @@ TEST(queue_test, remove_get_last_equal) {
     const double last_2 = testing_queue_2->getLastData();
 
     ASSERT_EQ(last_1, last_2);
+}
+
+TEST(queue_test, remove_get_last_equal) {
+    Queue* testing_queue_1 = new Queue();
+    Queue* testing_queue_2 = new Queue();
+
+    testing_queue_1->append(2.0);
+    testing_queue_1->append(4.4);
+
+    testing_queue_2->append(4.0);
+    testing_queue_2->append(4.4);
+
+    ASSERT_EQ(testing_queue_1->getLastData(), testing_queue_2->getLastData());
 }
 
 TEST(queue_test, get_size_equal) {
