@@ -6,7 +6,8 @@
 #include <cstdio>
 #include <string>
 
-struct Node {
+class Node {
+ public:
     double data = 0.0;
     Node* next = nullptr;
 };
