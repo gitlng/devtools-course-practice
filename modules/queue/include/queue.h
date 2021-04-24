@@ -6,17 +6,12 @@
 #include <cstdio>
 #include <string>
 
-struct Node {
-    double data = 0.0;
-    Node* next = nullptr;
-};
-
 class Queue {
- private:
-    Node* first;
-    Node* last;
-
  public:
+    struct Node {
+        double data = 0.0;
+        Node* next = nullptr;
+    };
     Queue();
     ~Queue();
     bool isEmpty() const;
@@ -28,6 +23,10 @@ class Queue {
     std::string toStringData() const;
     bool isTheSameData(const Queue* other) const;
     Queue& operator=(const Queue& other);
+
+ private:
+    Node* first;
+    Node* last;
 };
 
 #endif  // MODULES_QUEUE_INCLUDE_QUEUE_H_
