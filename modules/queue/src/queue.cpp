@@ -56,6 +56,14 @@ Queue& Queue::operator=(const Queue& other) {
     }
 
     if (other.isEmpty()) {
+        this->first = nullptr;
+        return *this;
+    }
+    if (this == &other) {
+        return *this;
+    }
+
+    if (other.isEmpty()) {
         delete this;
         this->first = this->last = nullptr;
         return *this;

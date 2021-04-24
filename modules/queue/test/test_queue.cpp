@@ -5,14 +5,24 @@
 
 #include "include/queue.h"
 
-TEST(queue_test, empty_node) {
+TEST(queue_test, empty_node_creation) {
     ASSERT_NO_THROW(new Node());
 }
 
-TEST(queue_test, copy_nodes) {
+TEST(queue_test, node_copy) {
     Node* node = new Node();
 
     ASSERT_NO_THROW(new Node(*node));
+}
+
+TEST(queue_test, node_delete) {
+    Node* node = new Node();
+
+    ASSERT_NO_THROW(delete node);
+}
+
+TEST(queue_test, without_new_init_node) {
+    ASSERT_NO_THROW(Node node);
 }
 
 TEST(queue_test, node_get_data) {
@@ -20,6 +30,18 @@ TEST(queue_test, node_get_data) {
     node->data = 5.0;
 
     ASSERT_EQ(node->data, 5.0);
+}
+
+TEST(queue_test, node_get_data_full_init) {
+    Node node = {0.0, nullptr};
+
+    ASSERT_EQ(node.data, 0.0);
+}
+
+TEST(queue_test, node_get_data_ref_full_init) {
+    Node* node = new Node({0.0, nullptr});
+
+    ASSERT_EQ(node->data, 0.0);
 }
 
 TEST(queue_test, node_get_next) {
@@ -65,9 +87,8 @@ TEST(queue_test, throw_remove_first) {
 TEST(queue_test, queue_equals_itself) {
     Queue *testing_queue = new Queue();
 
-    ASSERT_NO_THROW(testing_queue = testing_queue;);
+    ASSERT_NO_THROW(*testing_queue = *testing_queue;);
 }
-
 
 TEST(queue_test, empty_queues_equal) {
     Queue *testing_queue_1 = new Queue();
@@ -95,6 +116,17 @@ TEST(queue_test, not_empty_equals_empty) {
     ASSERT_EQ(false, str_data_queue_1 == str_data_queue_2);
 }
 
+TEST(queue_test, not_empty_queues_equal) {
+    Queue *testing_queue_1 = new Queue();
+    Queue *testing_queue_2 = new Queue();
+
+    testing_queue_2->append(2.5);
+    testing_queue_2->append(3.5);
+
+    *testing_queue_1 = *testing_queue_2;
+
+    ASSERT_EQ(testing_queue_1->isTheSameData(testing_queue_2), true);
+}
 
 TEST(queue_test, not_empty_equals_empty) {
     Queue *testing_queue_1 = new Queue();
@@ -104,11 +136,20 @@ TEST(queue_test, not_empty_equals_empty) {
 
     Queue *testing_queue_2 = new Queue();
 
-    testing_queue_1 = testing_queue_2;
-
-    ASSERT_EQ(testing_queue_1 == testing_queue_2, true);
+    ASSERT_EQ(testing_queue_1->isTheSameData(testing_queue_2), false);
 }
 
+TEST(queue_test, empty_equals_not_empty) {
+    Queue *testing_queue_1 = new Queue();
+    Queue *testing_queue_2 = new Queue();
+
+    testing_queue_2->append(5.2);
+    testing_queue_2->append(3.2);
+
+    *testing_queue_1 = *testing_queue_2;
+
+    ASSERT_EQ(testing_queue_1->isTheSameData(testing_queue_2), true);
+}
 
 TEST(queue_test, is_empty_true) {
     Queue * testing_queue = new Queue();
