@@ -73,6 +73,10 @@ TEST(queue_test, operator_equals) {
 
     Queue* testing_queue_2 = new Queue();
 
+    for (size_t i = 10; i < 20; i++) {
+        testing_queue_1->append(static_cast<double>(i));
+    }
+
     testing_queue_1 = testing_queue_2;
 
     ASSERT_EQ(testing_queue_1 == testing_queue_2, true);
