@@ -58,31 +58,33 @@ bool Queue::isTheSameData(const Queue* other) const {
 }
 
 Queue& Queue::operator=(const Queue& other) {
+    if (this == &other) {
+        return *this;
+    }
+
     if (other.isEmpty()) {
         this->first = nullptr;
         return *this;
     }
-    if (this == &other) {
-        return *this;
-    } else {
-        if (!this->isEmpty()) {
-            this->first = nullptr;
-        }
 
-        this->first = new Node(*(other.first));
-
-        Node* other_first_next = other.first->next;
-
-        Node* this_first = this->first;
-
-        while (other_first_next != nullptr) {
-            this_first->next = new Node(*other_first_next);
-            this_first = new Node(*other_first_next);
-            other_first_next = other_first_next->next;
-        }
-
-        this->last = new Node(*other.last);
+    if (!this->isEmpty()) {
+        this->first = nullptr;
     }
+
+    this->first = new Node(*(other.first));
+
+    Node* other_first_next = other.first->next;
+
+    Node* this_first = this->first;
+
+    while (other_first_next != nullptr) {
+        this_first->next = new Node(*other_first_next);
+        this_first = new Node(*other_first_next);
+        other_first_next = other_first_next->next;
+    }
+
+    this->last = new Node(*other.last);
+
     return *this;
 }
 
