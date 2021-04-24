@@ -36,14 +36,14 @@ void Queue::append(double data) {
 
 double Queue::getFirstData() const {
     if (this->isEmpty()) {
-        throw;
+        throw std::exception();
     }
     return this->first->data;
 }
 
 void Queue::removeFirst() {
     if (this->first == nullptr) {
-        throw;
+        throw std::exception();
     }
 
     Node* new_first = this->first;
