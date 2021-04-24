@@ -132,6 +132,19 @@ TEST(queue_test, remove_first_equal) {
     ASSERT_EQ(testing_queue_1->isTheSameData(testing_queue_2), true);
 }
 
+TEST(queue_test, remove_get_last_equal) {
+    Queue* testing_queue_1 = new Queue();
+    Queue* testing_queue_2 = new Queue();
+
+    testing_queue_1->append(2.0);
+    testing_queue_1->append(4.4);
+
+    testing_queue_2->append(4.0);
+    testing_queue_2->append(4.4);
+
+    ASSERT_EQ(testing_queue_1->getLastData(), testing_queue_2->getLastData());
+}
+
 TEST(queue_test, get_size_equal) {
     Queue* testing_queue_1 = new Queue();
     Queue* testing_queue_2 = new Queue();

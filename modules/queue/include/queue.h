@@ -19,7 +19,6 @@ class Queue {
  public:
     Queue();
     ~Queue();
-    Queue(const Queue& queue);
     bool isEmpty() const;
     void append(double data);
     void removeFirst();
