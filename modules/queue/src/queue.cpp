@@ -4,8 +4,6 @@
 #include <iostream>
 
 #include "include/queue.h"
-#include "include/node.h"
-
 
 Queue::Queue() {
     this->first = nullptr;
@@ -15,11 +13,15 @@ Queue::Queue() {
 Queue::~Queue() {
     delete(first);
 }
+
 bool Queue::isEmpty() const {
     return (this->last == nullptr);
 }
 
 double Queue::getLastData() const {
+    if (this->isEmpty()) {
+        throw std::exception();
+    }
     return this->last->getData();
 }
 
@@ -93,8 +95,10 @@ unsigned int Queue::getSize() const {
     unsigned int size = 1;
     Node current = *this->first;
 
-    for (; current.getNext() != nullptr; size++,
-        current.setNext(current.getNext()->getNext())) {}
+    while (current.getNext() != nullptr) {
+        size++;
+        current.setNext(current.getNext()->getNext());
+    }
 
     return size;
 }
@@ -103,11 +107,15 @@ std::string Queue::toStringData() const {
     if (this->isEmpty()) {
         return " ";
     }
+
     Node current = *this->first;
+
     std::string string_queue = std::to_string(current.getData()) + " ";
+
     while (current.getNext() != nullptr) {
         string_queue += std::to_string(current.getNext()->getData()) + " ";
         current.setNext(current.getNext()->getNext());
     }
+
     return string_queue;
 }
