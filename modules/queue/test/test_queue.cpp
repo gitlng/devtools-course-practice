@@ -13,6 +13,25 @@ TEST(queue_test, get_first_exception) {
     ASSERT_ANY_THROW(testing_queue->getFirstData());
 }
 
+TEST(queue_test, no_throw_destructor) {
+    Queue *testing_queue = new Queue();
+
+    ASSERT_NO_THROW(testing_queue->~Queue(););
+}
+
+TEST(queue_test, throw_get_first) {
+    Queue *testing_queue = new Queue();
+
+    ASSERT_ANY_THROW(testing_queue->getFirstData());
+}
+
+TEST(queue_test, no_throw_empty_queues) {
+    Queue *testing_queue_1 = new Queue();
+    Queue *testing_queue_2 = new Queue();
+
+    ASSERT_NO_THROW(testing_queue_1 = testing_queue_2);
+}
+
 TEST(queue_test, is_empty_true) {
     Queue * testing_queue = new Queue();
 
