@@ -1,8 +1,8 @@
 // Copyright 2021 Tkachev Alexey
 
 #include <gtest/gtest.h>
-#include "include/queue.h"
 
+#include "include/queue.h"
 
 TEST(queue_test, no_exception_during_crearing) {
     ASSERT_NO_THROW(new Queue());
@@ -90,7 +90,7 @@ TEST(queue_test, is_empty_true) {
 
 TEST(queue_test, is_empty_false) {
     Queue* testing_queue = new Queue();
-    testing_queue->append(25);
+    testing_queue->append(25.5);
 
     ASSERT_EQ(testing_queue->isEmpty(), false);
 }
@@ -101,6 +101,12 @@ TEST(queue_test, get_append_expection) {
     const double number_to_add = 2.5;
 
     ASSERT_NO_THROW(testing_queue->append(number_to_add););
+}
+
+TEST(queue_test, get_last_expection) {
+    Queue* testing_queue = new Queue();
+
+    ASSERT_ANY_THROW(testing_queue->getLastData(););
 }
 
 TEST(queue_test, copy_constructor_equal) {
@@ -167,7 +173,7 @@ TEST(queue_test, comparing_two_queues_not_equal) {
     ASSERT_EQ(testing_queue_1->isTheSameData(testing_queue_2), false);
 }
 
-TEST(queue_test, comparing_2) {
+TEST(queue_test, comparing_get_first_two_queues) {
     Queue* testing_queue_1 = new Queue();
     Queue* testing_queue_2 = new Queue();
 
