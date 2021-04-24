@@ -3,10 +3,10 @@
 #include <string>
 #include <iostream>
 
-#include "include/Queue.h"
+#include "include/queue.h"
 
 
-Queue::Queue(): last(nullptr), first(last) {}
+Queue::Queue(): last(nullptr), first(nullptr) {}
 
 Queue::~Queue() {
     delete(first);
