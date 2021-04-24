@@ -10,13 +10,12 @@ class Node {
 
  public:
     Node();
-    ~Node();
 
-    void setDada(const double& data_);
+    void setDada(double data);
     void setNext(Node* next);
 
-    double getData() const;
-    Node* getNext() const;
+    double getData();
+    Node* getNext();
 };
 
 #endif  // MODULES_QUEUE_INCLUDE_NODE_H_

@@ -4,19 +4,15 @@
 
 Node::Node(): data(0.0), next(nullptr) {}
 
-Node::~Node() {
-    delete(this->next);
-}
-
-double Node::getData() const {
+double Node::getData() {
     return this->data;
 }
 
-Node* Node::getNext() const {
+Node* Node::getNext() {
     return this->next;
 }
 
-void Node::setDada(const double& data_) {
+void Node::setDada(double data_) {
     this->data = data_;
 }
 

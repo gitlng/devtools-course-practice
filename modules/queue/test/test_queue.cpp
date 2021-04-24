@@ -3,38 +3,6 @@
 #include <gtest/gtest.h>
 #include "include/queue.h"
 
-TEST(queue_test, empty_node_creation) {
-    ASSERT_NO_THROW(new struct Queue::Node());
-}
-
-TEST(queue_test, node_copy) {
-    Queue::Node *node = new Queue::Node();
-
-    ASSERT_NO_THROW(new struct Queue::Node(*node));
-}
-
-TEST(queue_test, node_delete) {
-    Queue::Node *node = new Queue::Node();
-
-    ASSERT_NO_THROW(delete node);
-}
-
-TEST(queue_test, without_new_init_node) {
-    ASSERT_NO_THROW(struct Queue::Node node);
-}
-
-TEST(queue_test, node_get_data) {
-    Queue::Node *node = new Queue::Node();
-    node->data = 5.0;
-
-    ASSERT_EQ(node->data, 5.0);
-}
-
-TEST(queue_test, node_get_next) {
-    Queue::Node* node = new Queue::Node();
-
-    ASSERT_EQ(node->next, nullptr);
-}
 
 TEST(queue_test, no_exception_during_crearing) {
     ASSERT_NO_THROW(new Queue());
