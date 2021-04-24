@@ -1,0 +1,10 @@
+# Target labels
+ queue
+ Test
+# Source files and their labels
+C:/Users/user/Desktop/devtools-course-practice/modules/queue/test/test_main.cpp
+ queue
+ Test
+C:/Users/user/Desktop/devtools-course-practice/modules/queue/test/test_queue.cpp
+ queue
+ Test

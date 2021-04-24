@@ -1,0 +1,30 @@
+{
+	"sources" : 
+	[
+		{
+			"file" : "C:/Users/user/Desktop/devtools-course-practice/modules/queue/src/queue.cpp",
+			"labels" : 
+			[
+				"queue",
+				"Library"
+			]
+		},
+		{
+			"file" : "C:/Users/user/Desktop/devtools-course-practice/modules/queue/include/queue.h",
+			"labels" : 
+			[
+				"queue",
+				"Library"
+			]
+		}
+	],
+	"target" : 
+	{
+		"labels" : 
+		[
+			"queue",
+			"Library"
+		],
+		"name" : "lib_queue"
+	}
+}
