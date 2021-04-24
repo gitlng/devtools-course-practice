@@ -49,10 +49,6 @@ void Queue::removeFirst() {
     Node* new_first = this->first;
     this->first = first->next;
 
-    if (this->first == nullptr) {
-        this->last = nullptr;
-    }
-
     delete(new_first);
 }
 
