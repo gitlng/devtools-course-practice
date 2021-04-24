@@ -3,6 +3,7 @@
 #include <string>
 
 #include "include/queue.h"
+#include "include/node.h"
 
 Queue::Queue(): first(nullptr), last(nullptr) {}
 
