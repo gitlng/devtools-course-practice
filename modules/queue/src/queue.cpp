@@ -6,7 +6,10 @@
 #include "include/queue.h"
 
 
-Queue::Queue(): last(nullptr), first(nullptr) {}
+Queue::Queue() {
+    this->first = nullptr;
+    this->last = nullptr;
+}
 
 Queue::~Queue() {
     delete(first);
@@ -33,14 +36,14 @@ void Queue::append(double data) {
 
 double Queue::getFirstData() const {
     if (this->isEmpty()) {
-        throw std::exception("The queue is empty!");
+        throw;
     }
     return this->first->data;
 }
 
 void Queue::removeFirst() {
     if (this->first == nullptr) {
-        throw std::exception("The queue is empty!");
+        throw;
     }
 
     Node* new_first = this->first;
