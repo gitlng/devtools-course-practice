@@ -3,6 +3,28 @@
 #include <gtest/gtest.h>
 #include "include/queue.h"
 
+TEST(queue_test, empty_node) {
+    ASSERT_NO_THROW(new Node());
+}
+
+TEST(queue_test, copy_nodes) {
+    Node* node = new Node();
+
+    ASSERT_NO_THROW(new Node(*node));
+}
+
+TEST(queue_test, node_get_data) {
+    Node* node = new Node();
+
+    ASSERT_NO_THROW(node->data);
+}
+
+TEST(queue_test, node_get_next) {
+    Node* node = new Node();
+
+    ASSERT_NO_THROW(node->next);
+}
+
 TEST(queue_test, no_exception_during_crearing) {
     ASSERT_NO_THROW(new Queue());
 }
@@ -25,6 +47,19 @@ TEST(queue_test, throw_get_first) {
     ASSERT_ANY_THROW(testing_queue->getFirstData());
 }
 
+TEST(queue_test, throw_remove_first) {
+    Queue *testing_queue = new Queue();
+
+    ASSERT_ANY_THROW(testing_queue->removeFirst());
+}
+
+TEST(queue_test, queue_equals_itself) {
+    Queue *testing_queue = new Queue();
+
+    ASSERT_NO_THROW(testing_queue = testing_queue;);
+}
+
+
 TEST(queue_test, empty_queues_equal) {
     Queue *testing_queue_1;
     Queue *testing_queue_2 = new Queue();
@@ -34,6 +69,21 @@ TEST(queue_test, empty_queues_equal) {
 
     ASSERT_EQ(testing_queue_1 == testing_queue_2, true);
 }
+
+
+TEST(queue_test, not_empty_equals_empty) {
+    Queue *testing_queue_1 = new Queue();
+
+    testing_queue_1->append(5.2);
+    testing_queue_1->append(3.2);
+
+    Queue *testing_queue_2 = new Queue();
+
+    testing_queue_1 = testing_queue_2;
+
+    ASSERT_EQ(testing_queue_1 == testing_queue_2, true);
+}
+
 
 TEST(queue_test, is_empty_true) {
     Queue * testing_queue = new Queue();
