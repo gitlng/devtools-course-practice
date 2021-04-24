@@ -7,12 +7,6 @@ TEST(queue_test, exception_during_crearing) {
     ASSERT_NO_THROW(new Queue());
 }
 
-TEST(queue_test, get_first_exception) {
-    Queue* testing_queue = new Queue();
-
-    ASSERT_ANY_THROW(testing_queue->getFirstData());
-}
-
 TEST(queue_test, is_empty_true) {
     Queue* testing_queue = new Queue();
 
