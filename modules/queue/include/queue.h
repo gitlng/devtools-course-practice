@@ -6,28 +6,28 @@
 #include <cstdio>
 #include <string>
 
-#include "include/node.h"
+struct Node {
+    double data = 0.0;
+    Node* next = nullptr;
+};
 
 class Queue {
- public:
-    Queue();
-    ~Queue();
-
-    bool isEmpty() const;
-    void append(double data);
-    void removeFirst();
-
-    double getFirstData() const;
-    double getLastData() const;
-    unsigned int getSize() const;
-
-    std::string toStringData() const;
-
-    Queue& operator=(const Queue& other);
-
  private:
     Node* first;
     Node* last;
+
+ public:
+    Queue();
+    ~Queue();
+    bool isEmpty() const;
+    void append(double data);
+    void removeFirst();
+    double getFirstData() const;
+    double getLastData() const;
+    unsigned int getSize() const;
+    std::string toStringData() const;
+    bool isTheSameData(const Queue* other) const;
+    Queue& operator=(const Queue& other);
 };
 
 #endif  // MODULES_QUEUE_INCLUDE_QUEUE_H_

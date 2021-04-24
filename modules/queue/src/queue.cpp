@@ -1,113 +1,104 @@
 // Copyright 2021 Tkachev Alexey
 
 #include <string>
+#include <iostream>
 
-#include "include/queue.h"
+#include "include/Queue.h"
 
-Queue::Queue(): first(nullptr), last(nullptr) {}
+
+Queue::Queue(): last(nullptr), first(last) {}
 
 Queue::~Queue() {
     delete(first);
 }
-
 bool Queue::isEmpty() const {
     return (this->last == nullptr);
 }
 
 double Queue::getLastData() const {
-    if (this->isEmpty()) {
-        throw std::exception();
-    }
-
-    return this->last->getData();
+    return this->last->data;
 }
 
 void Queue::append(double data) {
     Node* new_node = new Node();
-    new_node->setDada(data);
+    new_node->data = data;
 
     if (this->isEmpty()) {
         this->first = this->last = new_node;
     } else {
-        this->last->setNext(new_node);
+        this->last->next = new_node;
         this->last = new_node;
     }
 }
 
 double Queue::getFirstData() const {
     if (this->isEmpty()) {
-        throw std::exception();
+        throw std::exception("The queue is empty!");
     }
-
-    return this->first->getData();
+    return this->first->data;
 }
 
 void Queue::removeFirst() {
     if (this->first == nullptr) {
-        throw std::exception();
+        throw std::exception("The queue is empty!");
     }
 
-    this->first = this->first->getNext();
+    Node* new_first = this->first;
+    this->first = first->next;
+
+    if (this->first == nullptr) {
+        this->last = nullptr;
+    }
+
+    delete(new_first);
+}
+
+
+bool Queue::isTheSameData(const Queue* other) const {
+    return this->toStringData() == other->toStringData();
 }
 
 Queue& Queue::operator=(const Queue& other) {
     if (this == &other) {
         return *this;
+    } else {
+        if (!this->isEmpty() || other.isEmpty()) {
+            this->~Queue();
+        }
+
+        this->first = new Node(*(other.first));
+
+        Node* other_first_next = other.first->next;
+
+        Node* this_first = this->first;
+
+        while (other_first_next != nullptr) {
+            this_first->next = new Node(*other_first_next);
+            this_first = new Node(*other_first_next);
+            other_first_next = other_first_next->next;
+        }
+
+        this->last = new Node(*other.last);
     }
-
-    if (other.isEmpty()) {
-        delete this;
-        this->first = this->last = nullptr;
-        return *this;
-    }
-
-    if (!this->isEmpty()) {
-        delete this;
-    }
-
-    this->first = new Node();
-    this->last = new Node();
-    this->first = new Node(*other.first);
-    this->last = new Node(*other.last);
-
-    Node* other_first_next = other.first->getNext();
-
-    Node* this_first = this->first;
-
-    while (other_first_next) {
-        this_first->setNext(new Node(*other_first_next));
-        this_first = new Node(*other_first_next);
-        other_first_next = other_first_next->getNext();
-    }
-
     return *this;
 }
 
 unsigned int Queue::getSize() const {
     unsigned int size = 1;
-    Node* current = this->first;
+    Node current = *this->first;
 
-    while (current) {
-        size++;
-        current = current->getNext();
-    }
+    for (; current.next != nullptr; size++,
+        current.next = current.next->next) {}
 
     return size;
 }
 
 std::string Queue::toStringData() const {
-    if (this->isEmpty()) {
-        return " ";
+    Node current = *this->first;
+    std::string string_queue = std::to_string(current.data) + " ";
+    while (current.next != nullptr) {
+        string_queue += std::to_string(current.next->data) + " ";
+        current.next = current.next->next;
     }
-
-    Node* current = this->first;
-
-    std::string string_queue;
-
-    while (current) {
-        string_queue += std::to_string(current->getData()) + " ";
-        current = current->getNext();
-    }
-
     return string_queue;
 }
