@@ -8,7 +8,7 @@
 Queue::Queue(): first(nullptr), last(nullptr) {}
 
 Queue::~Queue() {
-    delete(first);
+    delete first;
 }
 
 bool Queue::isEmpty() const {
@@ -57,7 +57,8 @@ Queue& Queue::operator=(const Queue& other) {
     }
 
     if (other.isEmpty()) {
-        this->first = nullptr;
+        delete this;
+        this->first = this->last = nullptr;
         return *this;
     }
     if (this == &other) {

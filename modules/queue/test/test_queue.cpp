@@ -82,7 +82,10 @@ TEST(queue_test, not_empty_queues_equal) {
 
     *testing_queue_1 = *testing_queue_2;
 
-    ASSERT_EQ(testing_queue_1->isTheSameData(testing_queue_2), true);
+    std::string str_data_queue_1 = testing_queue_1->toStringData();
+    std::string str_data_queue_2 = testing_queue_2->toStringData();
+
+    ASSERT_EQ(true, str_data_queue_1 == str_data_queue_2);
 }
 
 TEST(queue_test, not_empty_equals_empty) {
@@ -93,19 +96,10 @@ TEST(queue_test, not_empty_equals_empty) {
 
     Queue *testing_queue_2 = new Queue();
 
-    ASSERT_EQ(testing_queue_1->isTheSameData(testing_queue_2), false);
-}
+    std::string str_data_queue_1 = testing_queue_1->toStringData();
+    std::string str_data_queue_2 = testing_queue_2->toStringData();
 
-TEST(queue_test, empty_equals_not_empty) {
-    Queue *testing_queue_1 = new Queue();
-    Queue *testing_queue_2 = new Queue();
-
-    testing_queue_2->append(5.2);
-    testing_queue_2->append(3.2);
-
-    *testing_queue_1 = *testing_queue_2;
-
-    ASSERT_EQ(testing_queue_1->isTheSameData(testing_queue_2), true);
+    ASSERT_EQ(false, str_data_queue_1 == str_data_queue_2);
 }
 
 TEST(queue_test, is_empty_true) {
