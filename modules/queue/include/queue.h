@@ -12,14 +12,17 @@ class Queue {
  public:
     Queue();
     ~Queue();
+
     bool isEmpty() const;
     void append(double data);
     void removeFirst();
+
     double getFirstData() const;
     double getLastData() const;
     unsigned int getSize() const;
+
     std::string toStringData() const;
-    bool isTheSameData(const Queue* other) const;
+
     Queue& operator=(const Queue& other);
 
  private:

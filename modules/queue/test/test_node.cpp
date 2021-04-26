@@ -28,13 +28,13 @@ TEST(node_test, node_set_get_data) {
     Node *node = new Node();
     node->setDada(5.0);
 
-    ASSERT_EQ(node->getData(), 5.0);
+    ASSERT_EQ(5.0, node->getData());
 }
 
 TEST(node_test, node_get_next) {
     Node* node = new Node();
 
-    ASSERT_EQ(node->getNext(), nullptr);
+    ASSERT_EQ(nullptr, node->getNext());
 }
 
 TEST(node_test, node_set_next_nullptr) {
