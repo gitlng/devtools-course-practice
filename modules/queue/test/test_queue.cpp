@@ -20,12 +20,6 @@ TEST(queue_test, no_throw_destructor) {
     ASSERT_NO_THROW(testing_queue->~Queue(););
 }
 
-TEST(queue_test, throw_get_first) {
-    Queue *testing_queue = new Queue();
-
-    ASSERT_ANY_THROW(testing_queue->getFirstData());
-}
-
 TEST(queue_test, throw_remove_first) {
     Queue *testing_queue = new Queue();
 
@@ -44,7 +38,10 @@ TEST(queue_test, empty_queues_equal) {
 
     *testing_queue_1 = *testing_queue_2;
 
-    ASSERT_EQ(testing_queue_1->isTheSameData(testing_queue_2), true);
+    std::string str_data_queue_1 = testing_queue_1->toStringData();
+    std::string str_data_queue_2 = testing_queue_2->toStringData();
+
+    ASSERT_EQ(true, str_data_queue_1 == str_data_queue_2);
 }
 
 TEST(queue_test, not_empty_queues_equal) {
@@ -56,7 +53,10 @@ TEST(queue_test, not_empty_queues_equal) {
 
     *testing_queue_1 = *testing_queue_2;
 
-    ASSERT_EQ(testing_queue_1->isTheSameData(testing_queue_2), true);
+    std::string str_data_queue_1 = testing_queue_1->toStringData();
+    std::string str_data_queue_2 = testing_queue_2->toStringData();
+
+    ASSERT_EQ(true, str_data_queue_1 == str_data_queue_2);
 }
 
 TEST(queue_test, not_empty_equals_empty) {
@@ -67,32 +67,23 @@ TEST(queue_test, not_empty_equals_empty) {
 
     Queue *testing_queue_2 = new Queue();
 
-    ASSERT_EQ(testing_queue_1->isTheSameData(testing_queue_2), false);
-}
+    std::string str_data_queue_1 = testing_queue_1->toStringData();
+    std::string str_data_queue_2 = testing_queue_2->toStringData();
 
-TEST(queue_test, empty_equals_not_empty) {
-    Queue *testing_queue_1 = new Queue();
-    Queue *testing_queue_2 = new Queue();
-
-    testing_queue_2->append(5.2);
-    testing_queue_2->append(3.2);
-
-    *testing_queue_1 = *testing_queue_2;
-
-    ASSERT_EQ(testing_queue_1->isTheSameData(testing_queue_2), true);
+    ASSERT_EQ(false, str_data_queue_1 == str_data_queue_2);
 }
 
 TEST(queue_test, is_empty_true) {
     Queue * testing_queue = new Queue();
 
-    ASSERT_EQ(testing_queue->isEmpty(), true);
+    ASSERT_EQ(true, testing_queue->isEmpty());
 }
 
 TEST(queue_test, is_empty_false) {
     Queue* testing_queue = new Queue();
     testing_queue->append(25.5);
 
-    ASSERT_EQ(testing_queue->isEmpty(), false);
+    ASSERT_EQ(false, testing_queue->isEmpty());
 }
 
 TEST(queue_test, get_append_expection) {
@@ -100,13 +91,13 @@ TEST(queue_test, get_append_expection) {
 
     const double number_to_add = 2.5;
 
-    ASSERT_NO_THROW(testing_queue->append(number_to_add););
+    ASSERT_NO_THROW(testing_queue->append(number_to_add));
 }
 
 TEST(queue_test, get_last_expection) {
     Queue* testing_queue = new Queue();
 
-    ASSERT_ANY_THROW(testing_queue->getLastData(););
+    ASSERT_ANY_THROW(testing_queue->getLastData());
 }
 
 TEST(queue_test, copy_constructor_equal) {
@@ -118,7 +109,10 @@ TEST(queue_test, copy_constructor_equal) {
 
     Queue* testing_queue_2 = new Queue(*testing_queue_1);
 
-    ASSERT_EQ(testing_queue_1->isTheSameData(testing_queue_2), true);
+    std::string str_data_queue_1 = testing_queue_1->toStringData();
+    std::string str_data_queue_2 = testing_queue_2->toStringData();
+
+    ASSERT_EQ(true, str_data_queue_1 == str_data_queue_2);
 }
 
 TEST(queue_test, operator_equals) {
@@ -136,7 +130,10 @@ TEST(queue_test, operator_equals) {
 
     *testing_queue_1 = *testing_queue_2;
 
-    ASSERT_EQ(testing_queue_1->isTheSameData(testing_queue_2), true);
+    std::string str_data_queue_1 = testing_queue_1->toStringData();
+    std::string str_data_queue_2 = testing_queue_2->toStringData();
+
+    ASSERT_EQ(true, str_data_queue_1 == str_data_queue_2);
 }
 
 TEST(queue_test, comparing_two_queues_equal) {
@@ -151,7 +148,10 @@ TEST(queue_test, comparing_two_queues_equal) {
         testing_queue_2->append(static_cast<double>(i));
     }
 
-    ASSERT_EQ(testing_queue_1->isTheSameData(testing_queue_2), true);
+    std::string str_data_queue_1 = testing_queue_1->toStringData();
+    std::string str_data_queue_2 = testing_queue_2->toStringData();
+
+    ASSERT_EQ(true, str_data_queue_1 == str_data_queue_2);
 }
 
 TEST(queue_test, comparing_two_queues_not_equal) {
@@ -170,7 +170,10 @@ TEST(queue_test, comparing_two_queues_not_equal) {
         testing_queue_1->removeFirst();
     }
 
-    ASSERT_EQ(testing_queue_1->isTheSameData(testing_queue_2), false);
+    std::string str_data_queue_1 = testing_queue_1->toStringData();
+    std::string str_data_queue_2 = testing_queue_2->toStringData();
+
+    ASSERT_EQ(false, str_data_queue_1 == str_data_queue_2);
 }
 
 TEST(queue_test, comparing_get_first_two_queues) {
@@ -207,7 +210,10 @@ TEST(queue_test, remove_first_equal) {
     testing_queue_2->append(4.5);
     testing_queue_2->append(5.5);
 
-    ASSERT_EQ(testing_queue_1->isTheSameData(testing_queue_2), true);
+    std::string str_data_queue_1 = testing_queue_1->toStringData();
+    std::string str_data_queue_2 = testing_queue_2->toStringData();
+
+    ASSERT_EQ(true, str_data_queue_1 == str_data_queue_2);
 }
 
 TEST(queue_test, remove_get_last_equal) {
@@ -239,14 +245,14 @@ TEST(queue_test, get_size_equal) {
         testing_queue_2->append(static_cast<double>(number_to_append));
     }
 
-    ASSERT_EQ(testing_queue_1->getSize() == testing_queue_2->getSize(), true);
+    ASSERT_EQ(true, testing_queue_1->getSize() == testing_queue_2->getSize());
 }
 
 TEST(queue_test, get_size_not_equal) {
     Queue* testing_queue_1 = new Queue();
     Queue* testing_queue_2 = new Queue();
 
-    double number_to_append = 0.0;
+    double number_to_append;
 
     for (size_t i = 0; i < 200; i++) {
         number_to_append = i;
@@ -258,7 +264,7 @@ TEST(queue_test, get_size_not_equal) {
         testing_queue_2->append(static_cast<double>(number_to_append));
     }
 
-    ASSERT_EQ(testing_queue_1->getSize() == testing_queue_2->getSize(), false);
+    ASSERT_EQ(false, testing_queue_1->getSize() == testing_queue_2->getSize());
 }
 
 TEST(queue_test, to_string_equal) {
@@ -270,6 +276,6 @@ TEST(queue_test, to_string_equal) {
 
     Queue* testing_queue_2(testing_queue_1);
 
-    ASSERT_EQ(testing_queue_1->toStringData() ==
-              testing_queue_2->toStringData(), true);
+    ASSERT_EQ(true, testing_queue_1->toStringData() ==
+              testing_queue_2->toStringData());
 }

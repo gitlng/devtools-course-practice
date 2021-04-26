@@ -1,17 +1,13 @@
 // Copyright 2021 Tkachev Alexey
 
 #include <string>
-#include <iostream>
 
 #include "include/queue.h"
 
-Queue::Queue() {
-    this->first = nullptr;
-    this->last = nullptr;
-}
+Queue::Queue(): first(nullptr), last(nullptr) {}
 
 Queue::~Queue() {
-    delete(first);
+    delete first;
 }
 
 bool Queue::isEmpty() const {
@@ -22,6 +18,7 @@ double Queue::getLastData() const {
     if (this->isEmpty()) {
         throw std::exception();
     }
+
     return this->last->getData();
 }
 
@@ -41,6 +38,7 @@ double Queue::getFirstData() const {
     if (this->isEmpty()) {
         throw std::exception();
     }
+
     return this->first->getData();
 }
 
@@ -49,15 +47,7 @@ void Queue::removeFirst() {
         throw std::exception();
     }
 
-    Node* new_first = this->first;
     this->first = this->first->getNext();
-
-    delete(new_first);
-}
-
-
-bool Queue::isTheSameData(const Queue* other) const {
-    return this->toStringData() == other->toStringData();
 }
 
 Queue& Queue::operator=(const Queue& other) {
@@ -66,12 +56,13 @@ Queue& Queue::operator=(const Queue& other) {
     }
 
     if (other.isEmpty()) {
-        this->first = nullptr;
+        delete this;
+        this->first = this->last = nullptr;
         return *this;
     }
 
     if (!this->isEmpty()) {
-        this->first = nullptr;
+        delete this;
     }
 
     this->first = new Node(*(other.first));
@@ -80,7 +71,7 @@ Queue& Queue::operator=(const Queue& other) {
 
     Node* this_first = this->first;
 
-    while (other_first_next != nullptr) {
+    while (other_first_next) {
         this_first->setNext(new Node(*other_first_next));
         this_first = new Node(*other_first_next);
         other_first_next = other_first_next->getNext();
@@ -93,11 +84,11 @@ Queue& Queue::operator=(const Queue& other) {
 
 unsigned int Queue::getSize() const {
     unsigned int size = 1;
-    Node current = *this->first;
+    Node* current = this->first;
 
-    while (current.getNext() != nullptr) {
+    while (current) {
         size++;
-        current.setNext(current.getNext()->getNext());
+        current = current->getNext();
     }
 
     return size;
@@ -108,13 +99,13 @@ std::string Queue::toStringData() const {
         return " ";
     }
 
-    Node current = *this->first;
+    Node* current = this->first;
 
-    std::string string_queue = std::to_string(current.getData()) + " ";
+    std::string string_queue;
 
-    while (current.getNext() != nullptr) {
-        string_queue += std::to_string(current.getNext()->getData()) + " ";
-        current.setNext(current.getNext()->getNext());
+    while (current) {
+        string_queue += std::to_string(current->getData()) + " ";
+        current = current->getNext();
     }
 
     return string_queue;

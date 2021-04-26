@@ -4,6 +4,10 @@
 
 Node::Node(): data(0.0), next(nullptr) {}
 
+Node::~Node() {
+    delete this->next;
+}
+
 double Node::getData() {
     return this->data;
 }

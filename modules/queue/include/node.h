@@ -10,6 +10,7 @@ class Node {
 
  public:
     Node();
+    ~Node();
 
     void setDada(double data);
     void setNext(Node* next);
