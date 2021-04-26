@@ -77,8 +77,11 @@ TEST(queue_test, not_empty_queues_equal) {
     Queue *testing_queue_1 = new Queue();
     Queue *testing_queue_2 = new Queue();
 
-    testing_queue_2->append(2.5);
-    testing_queue_2->append(3.5);
+    testing_queue_1->append(2.5);
+    testing_queue_1->append(3.5);
+
+    testing_queue_2->append(35.1);
+    testing_queue_2->append(29.99);
 
     *testing_queue_1 = *testing_queue_2;
 
