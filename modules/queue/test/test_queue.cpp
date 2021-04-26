@@ -116,28 +116,7 @@ TEST(queue_test, copy_constructor_equal) {
     ASSERT_EQ(true, str_data_queue_1 == str_data_queue_2);
 }
 
-TEST(queue_test, operator_equals) {
-    Queue* testing_queue_1 = new Queue();
-
-    for (size_t i = 0; i < 10; i++) {
-        testing_queue_1->append(static_cast<double>(i));
-    }
-
-    Queue* testing_queue_2 = new Queue();
-
-    for (size_t i = 10; i < 20; i++) {
-        testing_queue_2->append(static_cast<double>(i));
-    }
-
-    *testing_queue_1 = *testing_queue_2;
-
-    std::string str_data_queue_1 = testing_queue_1->toStringData();
-    std::string str_data_queue_2 = testing_queue_2->toStringData();
-
-    ASSERT_EQ(true, str_data_queue_1 == str_data_queue_2);
-}
-
-TEST(queue_test, comparing_two_queues_equal) {
+TEST(queue_test, comparing_two_big_queues_equal) {
     Queue* testing_queue_1 = new Queue();
     Queue* testing_queue_2 = new Queue();
 
@@ -155,7 +134,7 @@ TEST(queue_test, comparing_two_queues_equal) {
     ASSERT_EQ(true, str_data_queue_1 == str_data_queue_2);
 }
 
-TEST(queue_test, comparing_two_queues_not_equal) {
+TEST(queue_test, comparing_two_big_queues_not_equal) {
     Queue* testing_queue_1 = new Queue();
     Queue* testing_queue_2 = new Queue();
 
