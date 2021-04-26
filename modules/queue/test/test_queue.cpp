@@ -1,6 +1,7 @@
 // Copyright 2021 Tkachev Alexey
 
 #include <gtest/gtest.h>
+#include <string>
 
 #include "include/queue.h"
 
