@@ -4,6 +4,17 @@
 
 Node::Node(): data(0.0), next(nullptr) {}
 
+Node::Node(const Node& other) {
+    if (this == &other) {
+        return;
+    }
+
+    delete this;
+
+    this->next = nullptr;
+    this->data = other.data;
+}
+
 Node::~Node() {
     delete(this->next);
 }
