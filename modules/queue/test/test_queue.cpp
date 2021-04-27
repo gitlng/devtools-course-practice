@@ -350,8 +350,6 @@ TEST(queue_test, not_empty_equals_not_empty) {
 
     *testing_queue_1 = *testing_queue_2;
 
-    std::string str_data_queue_1 = testing_queue_1->toStringData();
-    std::string str_data_queue_2 = testing_queue_2->toStringData();
-
-    ASSERT_EQ(true, str_data_queue_1 == str_data_queue_2);
+    ASSERT_EQ(true, testing_queue_1->toStringData() ==
+            testing_queue_2->toStringData());
 }
