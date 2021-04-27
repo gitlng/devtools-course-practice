@@ -44,7 +44,7 @@ TEST(queue_test, throw_remove_first) {
 TEST(queue_test, queue_equals_itself) {
     Queue *testing_queue = new Queue();
 
-    ASSERT_NO_THROW(*testing_queue = *testing_queue;);
+    ASSERT_NO_THROW(*testing_queue = *testing_queue);
 }
 
 TEST(queue_test, empty_queues_equal) {
@@ -85,22 +85,23 @@ TEST(queue_test, not_empty_queues_equal) {
 
     *testing_queue_1 = *testing_queue_2;
 
-    std::string str_data_queue_1 = testing_queue_1->toStringData();
-    std::string str_data_queue_2 = testing_queue_2->toStringData();
+    const std::string str_data_queue_1 = testing_queue_1->toStringData();
+    const std::string str_data_queue_2 = testing_queue_2->toStringData();
 
     ASSERT_EQ(true, str_data_queue_1 == str_data_queue_2);
 }
 
 TEST(queue_test, not_empty_equals_empty) {
     Queue *testing_queue_1 = new Queue();
-
-    testing_queue_1->append(5.2);
-    testing_queue_1->append(3.2);
-
     Queue *testing_queue_2 = new Queue();
+    const double value_1 = 5.2;
+    const double value_2 = 3.2;
 
-    std::string str_data_queue_1 = testing_queue_1->toStringData();
-    std::string str_data_queue_2 = testing_queue_2->toStringData();
+    testing_queue_1->append(value_1);
+    testing_queue_1->append(value_2);
+
+    const std::string str_data_queue_1 = testing_queue_1->toStringData();
+    const std::string str_data_queue_2 = testing_queue_2->toStringData();
 
     ASSERT_EQ(false, str_data_queue_1 == str_data_queue_2);
 }
@@ -341,15 +342,21 @@ TEST(DISABLED_queue_test, not_empty_equals_not_empty) {
 TEST(queue_test, not_empty_equals_not_empty) {
     Queue *testing_queue_1 = new Queue();
     Queue *testing_queue_2 = new Queue();
+    const double value_1 = 2.5;
+    const double value_2 = 3.5;
+    const double value_3 = 35.1;
+    const double value_4 = 29.99;
 
-    testing_queue_1->append(2.5);
-    testing_queue_1->append(3.5);
+    testing_queue_1->append(value_1);
+    testing_queue_1->append(value_2);
 
-    testing_queue_2->append(35.1);
-    testing_queue_2->append(29.99);
+    testing_queue_2->append(value_3);
+    testing_queue_2->append(value_4);
 
     *testing_queue_1 = *testing_queue_2;
 
-    ASSERT_EQ(true, testing_queue_1->toStringData() ==
-            testing_queue_2->toStringData());
+    const std::string str_queue_1 = testing_queue_1->toStringData();
+    const std::string str_queue_2 = testing_queue_2->toStringData();
+
+    ASSERT_EQ(true, str_queue_1 == str_queue_2);
 }
