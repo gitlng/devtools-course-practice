@@ -12,8 +12,6 @@ class Node {
     Node();
     ~Node();
 
-    Node(const Node& other);
-
     void setDada(double data);
     void setNext(Node* next);
 
