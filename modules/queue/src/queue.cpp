@@ -7,7 +7,7 @@
 Queue::Queue(): first(nullptr), last(nullptr) {}
 
 Queue::~Queue() {
-    delete first;
+    delete(first);
 }
 
 bool Queue::isEmpty() const {
@@ -65,19 +65,20 @@ Queue& Queue::operator=(const Queue& other) {
         delete this;
     }
 
-    this->first = new Node(*(other.first));
+    this->first->setDada(other.first->getData());
+    this->first->setNext(nullptr);
+    this->last->setNext(nullptr);
+    this->last->setDada(other.last->getData());
 
     Node* other_first_next = other.first->getNext();
 
     Node* this_first = this->first;
 
     while (other_first_next) {
-        this_first->setNext(new Node(*other_first_next));
-        this_first = new Node(*other_first_next);
+        this_first->setNext(other_first_next);
+        this_first = (other_first_next);
         other_first_next = other_first_next->getNext();
     }
-
-    this->last = new Node(*other.last);
 
     return *this;
 }
