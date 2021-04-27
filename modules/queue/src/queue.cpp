@@ -85,8 +85,8 @@ Queue& Queue::operator=(const Queue& other) {
     Node* this_first = this->first;
 
     while (other_first_next) {
-        this_first->setNext(other_first_next);
-        this_first = (other_first_next);
+        this_first->setNext(new Node(*other_first_next));
+        this_first = new Node(*other_first_next);
         other_first_next = other_first_next->getNext();
     }
 
