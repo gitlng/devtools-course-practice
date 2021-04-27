@@ -16,7 +16,7 @@ Node* Node::getNext() const {
     return this->next;
 }
 
-void Node::setDada(double data_) {
+void Node::setDada(const double& data_) {
     this->data = data_;
 }
 

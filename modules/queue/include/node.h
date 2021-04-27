@@ -12,7 +12,7 @@ class Node {
     Node();
     ~Node();
 
-    void setDada(double data);
+    void setDada(const double& data_);
     void setNext(Node* next);
 
     double getData() const;
