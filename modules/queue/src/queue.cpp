@@ -64,12 +64,11 @@ Queue& Queue::operator=(const Queue& other) {
     if (!this->isEmpty()) {
         delete this;
     }
+
     this->first = new Node();
     this->last = new Node();
-    this->first->setDada(other.first->getData());
-    this->first->setNext(nullptr);
-    this->last->setNext(nullptr);
-    this->last->setDada(other.last->getData());
+    this->first = new Node(*other.first);
+    this->last = new Node(*other.last);
 
     Node* other_first_next = other.first->getNext();
 
