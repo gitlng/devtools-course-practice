@@ -20,9 +20,11 @@ TEST(node_test, without_new_init_node) {
 
 TEST(node_test, node_set_get_data) {
     Node *node = new Node();
-    node->setDada(5.0);
+    const double value = 5.0;
 
-    ASSERT_EQ(5.0, node->getData());
+    node->setDada(value);
+
+    ASSERT_EQ(value, node->getData());
 }
 
 TEST(node_test, node_get_next) {
@@ -45,10 +47,13 @@ TEST(node_test, node_operator_equals_both_similar) {
 
 TEST(node_test, not_empty_copy_not_empty_get_data) {
     Node* node_1 = new Node();
-    node_1->setDada(345.3);
-
     Node* node_2 = new Node();
-    node_2->setDada(234.1);
+    const double value_1 = 345.3;
+    const double value_2 = 234.1;
+
+    node_1->setDada(value_1);
+
+    node_2->setDada(value_2);
 
     node_1 = node_2;
 
@@ -58,8 +63,9 @@ TEST(node_test, not_empty_copy_not_empty_get_data) {
 TEST(node_test, empty_copy_not_empty_get_data) {
     Node* node_1;
     Node* node_2 = new Node();
+    const double value = 234.1;
 
-    node_2->setDada(234.1);
+    node_2->setDada(value);
 
     node_1 = node_2;
 
