@@ -4,15 +4,26 @@
 
 Node::Node(): data(0.0), next(nullptr) {}
 
-Node::~Node() {
-    delete this->next;
+Node::Node(const Node& other) {
+    if (this == &other) {
+        return;
+    }
+
+    delete this;
+
+    this->next = nullptr;
+    this->data = other.data;
 }
 
-double Node::getData() {
+Node::~Node() {
+    delete(this->next);
+}
+
+double Node::getData() const {
     return this->data;
 }
 
-Node* Node::getNext() {
+Node* Node::getNext() const {
     return this->next;
 }
 

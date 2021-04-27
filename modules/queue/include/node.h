@@ -12,11 +12,13 @@ class Node {
     Node();
     ~Node();
 
+    Node(const Node& other);
+
     void setDada(double data);
     void setNext(Node* next);
 
-    double getData();
-    Node* getNext();
+    double getData() const;
+    Node* getNext() const;
 };
 
 #endif  // MODULES_QUEUE_INCLUDE_NODE_H_
