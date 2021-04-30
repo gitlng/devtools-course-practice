@@ -289,7 +289,7 @@ TEST(queue_test, not_empty_equals_not_empty_CRASH_TEST) {
     testing_queue_2->append(value_3);
     testing_queue_2->append(value_4);
 
-    for (size_t i = 0; i < 1000; i++) {
+    for (size_t i = 0; i < 10000; i++) {
         *testing_queue_1 = *testing_queue_2;
         *testing_queue_1 = *testing_queue_2;
         *testing_queue_2 = *testing_queue_1;
