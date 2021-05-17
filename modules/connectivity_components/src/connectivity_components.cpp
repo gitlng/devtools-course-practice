@@ -21,14 +21,14 @@ unsigned int Graph::getElement(unsigned int x, unsigned int y) const {
     if (areValidCoords(x, y)) {
         return this->matrix[x][y];
     }
-    throw std::invalid_argument("invalid agruments.");
+    std::__throw_invalid_argument("invalid agruments.");
 }
 
 void Graph::setElement(unsigned int data, unsigned int x, unsigned int y) {
     if (areValidCoords(x, y)) {
         this->matrix[x][y] = data;
     } else {
-        throw std::invalid_argument("invalid agruments.");
+        std::__throw_invalid_argument("invalid agruments.");
     }
 }
 
