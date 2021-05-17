@@ -1,10 +1,8 @@
 // Copyright 2021 Tkachev Alexey
 
-#include "include/app_connectivity_components.h"
-#include <vector>
-#include <string>
-
 #include <gtest/gtest.h>
+
+#include "include/app_connectivity_components.h"
 
 TEST(Tkachev_connectivity_comp_app, creating) {
     ASSERT_NO_THROW(AppConnComponents());
@@ -65,7 +63,7 @@ TEST(Tkachev_connectivity_comp_app, create_set_get) {
 }
 
 
-TEST(Tkachev_connectivity_comp_app, create_set_get_false) {
+TEST(Tkachev_connectivity_comp_app, set_get_false) {
     std::vector<const char*> argv {
             "app",
             "create", "3",
@@ -81,14 +79,13 @@ TEST(Tkachev_connectivity_comp_app, create_set_get_false) {
     ASSERT_EQ(false, false_result == app(argc, argv.data()));
 }
 
-TEST(Tkachev_connectivity_comp_app, create_many_set_many_get) {
+TEST(Tkachev_connectivity_comp_app, many_set) {
     std::vector<const char*> argv {
             "app",
             "create", "5",
             "set",  "1", "1", "2",
-            "set", "0", "1", "3",
+            "set", "0", "1", "2",
             "get", "1", "2",
-            "get", "1", "3"
     };
     const int argc = static_cast<int>(argv.size());
 

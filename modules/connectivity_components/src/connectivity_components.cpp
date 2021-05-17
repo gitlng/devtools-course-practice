@@ -1,4 +1,4 @@
-// Copyright 2021 Tkachev Alexey
+// Copyright 2021 Pestreev Daniil
 
 #include "include/connectivity_components.h"
 
@@ -11,21 +11,22 @@ std::size_t Graph::getSize() const {
 }
 
 Graph::Graph(unsigned int n_):
-    used(std::vector<bool>(n_, false)), matrix(std::vector<std::vector<unsigned int>>(
+    used(std::vector<bool>(n_, false)),
+    matrix(std::vector<std::vector<unsigned int>>(
         n_, std::vector<unsigned int>(n_, 0))) {}
 
 unsigned int Graph::getElement(unsigned int x, unsigned int y) const {
     if (areValidCoords(x, y)) {
         return this->matrix[x][y];
     }
-    throw;
+    throw std::invalid_argument("invalid agruments.");
 }
 
 void Graph::setElement(unsigned int data, unsigned int x, unsigned int y) {
     if (areValidCoords(x, y)) {
         this->matrix[x][y] = data;
     } else {
-        throw;
+        throw std::invalid_argument("invalid agruments.");
     }
 }
 

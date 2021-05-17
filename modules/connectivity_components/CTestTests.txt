@@ -12,14 +12,6 @@ set_tests_properties (${prefix}_runs PROPERTIES
     LABELS "${MODULE}")
 
 add_test(
-    NAME ${prefix}_only_arg
-    COMMAND ${APPLICATION}
-)
-set_tests_properties (${prefix}_only_arg PROPERTIES
-    PASS_REGULAR_EXPRESSION "invalid arguments"
-    LABELS "${MODULE}")
-
-add_test(
     NAME ${prefix}_create_set_get
     COMMAND ${APPLICATION} create 5 set 1 3 4 get 3 4
 )
@@ -29,7 +21,7 @@ set_tests_properties (${prefix}_create_set_get PROPERTIES
 
 add_test(
     NAME ${prefix}_create_many_set_get
-    COMMAND ${APPLICATION} create 4 set 1 3 4 set 0 3 4 get 3 4
+    COMMAND ${APPLICATION} create 7 set 1 3 4 set 0 3 4 get 3 4
 )
 set_tests_properties (${prefix}_create_many_set_get PROPERTIES
     PASS_REGULAR_EXPRESSION "0"
