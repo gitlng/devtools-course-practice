@@ -1,5 +1,7 @@
 // Copyright 2021 Tkachev Alexey
 
+#include <string>
+
 #include "include/app_connectivity_components.h"
 
 int main(int argc, const char** argv) {
@@ -8,3 +10,4 @@ int main(int argc, const char** argv) {
     printf("%s\n", out.c_str());
     return 0;
 }
+
