@@ -10,11 +10,11 @@ class Graph {
     std::vector<bool> used;
     std::vector<std::vector<unsigned int>> matrix;
     bool areValidCoords(unsigned int x, unsigned int y) const;
+    void dfs(unsigned int from);
  public:
     explicit Graph(unsigned int n_);
     unsigned int getElement(unsigned int x, unsigned int y) const;
     void setElement(unsigned int data, unsigned int x, unsigned int y);
-    void dfs(unsigned int from);
     unsigned int getCountConnComps();
     void append();
     std::size_t getSize() const;

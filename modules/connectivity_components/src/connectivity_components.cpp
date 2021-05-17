@@ -24,6 +24,8 @@ unsigned int Graph::getElement(unsigned int x, unsigned int y) const {
 void Graph::setElement(unsigned int data, unsigned int x, unsigned int y) {
     if (areValidCoords(x, y)) {
         this->matrix[x][y] = data;
+    } else {
+        throw;
     }
 }
 
@@ -39,7 +41,7 @@ void Graph::append() {
 void Graph::dfs(unsigned int from) {
     used[from] = true;
     for (std::size_t i = 0; i < this->matrix.size(); i++) {
-        if (used[i] && (matrix[from][i] >= 1 || matrix[i][from] >= 1)) {
+        if (!used[i] && (matrix[from][i] >= 1 || matrix[i][from] >= 1)) {
             dfs(i);
         }
     }

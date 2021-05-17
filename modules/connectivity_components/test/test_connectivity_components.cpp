@@ -55,6 +55,7 @@ TEST(Pestreev_connectivity_components, out_of_scope_index) {
     }
 
     ASSERT_ANY_THROW(graph.getElement(6, 6));
+    ASSERT_ANY_THROW(graph.setElement(1, 6, 6));
 }
 
 TEST(Pestreev_connectivity_components, out_of_scope_index_2) {
@@ -94,7 +95,7 @@ TEST(Pestreev_connectivity_components, complete_simple_graph) {
     const unsigned int true_res = 1;
     const unsigned int res = graph.getCountConnComps();
 
-    ASSERT_EQ(1, res);
+    ASSERT_EQ(true_res, res);
 }
 
 TEST(Pestreev_connectivity_components, empty_graph) {
@@ -159,7 +160,7 @@ TEST(Pestreev_connectivity_components, some_simple_graph) {
         }
     }
 
-    const unsigned int true_res = 2;
+    const unsigned int true_res = 3;
     const unsigned int res = graph.getCountConnComps();
 
     ASSERT_EQ(true_res, res);
