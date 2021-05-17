@@ -1,6 +1,7 @@
 // Copyright 2021 Tkachev Alexey
 
 #include <vector>
+#include <string>
 
 #include "include/app_connectivity_components.h"
 
