@@ -2,6 +2,8 @@
 
 #include <gtest/gtest.h>
 
+#include <vector>
+
 #include "include/app_connectivity_components.h"
 
 TEST(Tkachev_connectivity_comp_app, creating) {

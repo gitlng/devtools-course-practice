@@ -4,6 +4,7 @@
 #define MODULES_CONNECTIVITY_COMPONENTS_INCLUDE_APP_CONNECTIVITY_COMPONENTS_H_
 
 #include <string>
+
 #include "include/connectivity_components.h"
 
 class AppConnComponents {

@@ -1,5 +1,7 @@
 // Copyright 2021 Pestreev Daniil
 
+#include <vector>
+
 #include "include/connectivity_components.h"
 
 bool Graph::areValidCoords(unsigned int x, unsigned int y) const {
