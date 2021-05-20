@@ -1,4 +1,4 @@
-// Copyright 2021 Pestreev Daniil
+// Copyright 2021 Tkachev Alexey
 
 #include <vector>
 
