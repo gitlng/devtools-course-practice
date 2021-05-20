@@ -60,7 +60,7 @@ std::string AppConnComponents::operator()(int argc, const char** argv) {
                                 if (current_argv == "getcountcomps") {
                                     this->response =
                                             std::to_string(
-                                                    this->graph.getCountConnComps());
+                                    this->graph.getCountConnComps());
                                 } else {
                                     this->response = "invalid arguments";
                                 }
