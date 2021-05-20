@@ -28,45 +28,49 @@ std::string AppConnComponents::operator()(int argc, const char** argv) {
     for (int current_arg = 1; current_arg < argc; current_arg++) {
         std::string current_argv =
                 static_cast<std::string>(argv[current_arg]);
-        if (current_argv == "create") {
-            current_arg++;
-            this->graph = Graph(atoi(argv[current_arg]));
-        } else {
-            if (current_argv == "get") {
+        try {
+            if (current_argv == "create") {
                 current_arg++;
-                unsigned int x = atoi(argv[current_arg]);
-                current_arg++;
-                unsigned int y = atoi(argv[current_arg]);
-                 this->response =
-                         std::to_string(this->graph.getElement(x, y));
+                this->graph = Graph(std::stoi(argv[current_arg]));
             } else {
-                if (current_argv == "set") {
+                if (current_argv == "get") {
                     current_arg++;
-                    unsigned int data = atoi(argv[current_arg]);
+                    unsigned int x = std::stoi(argv[current_arg]);
                     current_arg++;
-                    unsigned int x = atoi(argv[current_arg]);
-                    current_arg++;
-                    unsigned int y = atoi(argv[current_arg]);
-                    this->graph.setElement(data, x, y);
+                    unsigned int y = std::stoi(argv[current_arg]);
+                    this->response =
+                            std::to_string(this->graph.getElement(x, y));
                 } else {
-                    if (current_argv == "append") {
-                        this->graph.append();
+                    if (current_argv == "set") {
+                        current_arg++;
+                        unsigned int data = std::stoi(argv[current_arg]);
+                        current_arg++;
+                        unsigned int x = std::stoi(argv[current_arg]);
+                        current_arg++;
+                        unsigned int y = std::stoi(argv[current_arg]);
+                        this->graph.setElement(data, x, y);
                     } else {
-                        if (current_argv == "size") {
-                            this->response =
-                                    std::to_string(this->graph.getSize());
+                        if (current_argv == "append") {
+                            this->graph.append();
                         } else {
-                            if (current_argv == "getcountcomps") {
+                            if (current_argv == "size") {
                                 this->response =
-                                        std::to_string(
-                                        this->graph.getCountConnComps());
+                                        std::to_string(this->graph.getSize());
                             } else {
-                                this->response = "invalid arguments";
+                                if (current_argv == "getcountcomps") {
+                                    this->response =
+                                            std::to_string(
+                                                    this->graph.getCountConnComps());
+                                } else {
+                                    this->response = "invalid arguments";
+                                }
                             }
                         }
                     }
                 }
             }
+        } catch (...) {
+            this->response = "invalid arguments";
         }
     }
 

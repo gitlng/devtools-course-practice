@@ -10,4 +10,3 @@ int main(int argc, const char** argv) {
     printf("%s\n", out.c_str());
     return 0;
 }
-
